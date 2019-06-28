@@ -1,0 +1,15 @@
+<div class="container text-center">
+  <div class="card" style="width: 18rem; margin: 0 auto; margin-top: 2rem; padding-top: 1em">
+    <img class="card-img-top" src="../../assets/telsur.png" alt="Card image cap" style="width: 15rem; margin: 0 auto">
+    <div class="card-body">
+      <h4 class="card-title">Login</h4>
+      <form ngNativeValidate #f="ngForm" (ngSubmit)="ingresar( f )" id="loginform" action="index.html">
+        <label for="username">Username <input [ngModel]="username" type="text" name="username" id="username" required></label>
+        <label for="password">Password <input [ngModel]="password" type="password" name="password" id="password" required></label>
+        <br>
+        <button class="btn btn-success" type="submit">Entrar</button>
+      </form>
+      <a class="btn btn-success" [routerLink]="['/canales']">Mish!</a>
+    </div>
+  </div>
+</div>

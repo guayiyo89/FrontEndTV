@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-md-3"><h2>Buscar:</h2></div>
+  <div class="col-md-9">
+      <input type="text" placeholder="Ingresa Algo" class="form-control" (keyup)="buscaChannel()" [(ngModel)]="palabra">
+  </div>
+  <div class="col-md-12" *ngIf="palabra.length < 1">
+      <h1 style="color: rgb(173, 173, 173)">Buscar Canales Regionales</h1><hr>
+			<p>Por favor escriba un termino para iniciar la busqueda.</p>
+  </div>
+
+  <div class="col-md-12" *ngIf="palabra.length > 0">
+      <table class="table">
+          <thead class="thead-dark green-br">
+            <tr>
+              <th>Canal</th>
+              <th>Ciudad</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="cursor: pointer" *ngFor="let canal of canalList" [routerLink]="['/canales', canal._id]">
+              <td>{{canal.nombre}}</td>
+              <td>{{canal.ciudad}}</td>
+            </tr>
+          </tbody>
+        </table>
+  </div>
+</div>
+
+

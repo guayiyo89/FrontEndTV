@@ -1,0 +1,18 @@
+{
+    "canales": [
+        { 
+        "id": "OSRN",
+        "nombre": "Osorno TV +",
+        "ciudad": "Osorno",
+        "linkPng": "",
+        "linkVisio": "" 
+        },
+        {
+        "id": "TV2",
+        "nombre": "Guayo TV",
+        "ciudad": "Castro",
+        "linkPng": "",
+        "linkVisio": "" 
+        }
+    ]
+  }

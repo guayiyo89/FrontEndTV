@@ -1,0 +1,23 @@
+{
+  "canales": [
+    {
+      "id": 1,
+      "nombre": "Osorno TV +",
+      "ciudad": "Osorno",
+      "linkPng": "http://172.19.14.5/entone/Images/OsornoTV_v3.png",
+      "linkVisio": "http://172.19.14.5/entone/Images/OsornoTV_v3.png"
+    },
+    {
+      "id": 2,
+      "nombre": "Guayo TV",
+      "ciudad": "Castro",
+      "linkPng": "",
+      "linkVisio": ""
+    },
+    {
+      "nombre": "Guayo",
+      "ciudad": "Temuco",
+      "id": 6
+    }
+  ]
+}
