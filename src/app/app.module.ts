@@ -22,6 +22,7 @@ import { ChiloeComponent } from './pages/canales/zonal/chiloe/chiloe.component';
 import { PtomonttComponent } from './pages/canales/zonal/ptomontt/ptomontt.component';
 import { CoyhaiqueComponent } from './pages/canales/zonal/coyhaique/coyhaique.component';
 import { UsuarioService } from './services/usuario.service';
+import { SidebarService } from './services/sidebar.service';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,7 @@ import { UsuarioService } from './services/usuario.service';
     FormsModule,
     PAGES_ROUTES
   ],
-  providers: [CanalService, UsuarioService],
+  providers: [CanalService, UsuarioService, SidebarService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
