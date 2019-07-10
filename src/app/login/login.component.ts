@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { UsuarioService } from '../services/usuario.service';
 import { NgForm } from '@angular/forms';
 import { Usuario } from '../interfaces/usuario.model';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,13 @@ export class LoginComponent implements OnInit {
   ingresar(forma: NgForm) {
 
     if ( forma.invalid ) {
-      return;
+      Swal.fire({
+        title: 'Intente Nuevamente',
+        text: 'Usuario y/o contraseña incorrectos',
+        type: 'warning'
+      })
+      return
+
     }
     
     let usuario = new Usuario(forma.value.username, forma.value.password, null ,null);

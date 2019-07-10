@@ -1,0 +1,39 @@
+<div class="text-center">
+  <h1 style="font-weight:700; display: inline-block; background-color: rgb(26, 146, 26);letter-spacing: 4px; color: white; box-shadow: 3px 3px 0px 0px black; width: auto; text-transform: uppercase;">
+      Administración de Usuarios</h1>
+</div>
+
+<div class="row">
+  <div class="col-md-8">
+      <div class="row">
+        <div class="col-md-12 text-right" style="padding-bottom: 5px"><button class="btn btn-success" (click)="nuevo()">Nuevo Usuario</button></div>
+      </div>
+      <table class="table">
+          <thead class="thead-dark" style="border-bottom: 3px rgb(18, 141, 18) solid">
+            <tr>
+              <th style="width: 50%">Usuario / Rol</th>
+              <th>Ciudad</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="cursor: pointer" *ngFor="let user of userList">
+              <td style="width: 50%">{{user.username}} <br>
+                <label *ngIf="user.userrole === 'ADMIN_ROLE'" style="display: inline-block; color: white; font-size: 9px; font-weight: bold; background-color: tomato; border-radius: 5px; padding: 3px;">ADMIN</label>
+                <label *ngIf="user.userrole === 'USER_ROLE'" style="display: inline-block; color: white; font-size: 9px; font-weight: bold; background-color: green; border-radius: 5px; padding: 3px;">USER</label>
+              </td>
+              <td>
+                <button class="btn btn-success" (click)="edit(user._id)">Editar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+  </div>
+  <div class="col-md-4">
+    <div *ngIf="nuevoflag === true" class="nuevo">
+      <h2 style="font-weight: 700; color:rgb(26, 146, 26); letter-spacing: 4px; text-transform: uppercase">Nuevo Usuario</h2>
+    </div>
+    <div *ngIf="editflag" class="edit">
+      <h2 style="font-weight: 700; color:rgb(26, 146, 26); letter-spacing: 4px; text-transform: uppercase">Editar {{useredit.username}}</h2>
+    </div>
+  </div>
+</div>

@@ -5,8 +5,7 @@ import { Canal } from '../../interfaces/canal.model';
 
 @Component({
   selector: 'app-canales',
-  templateUrl: './canales.component.html',
-  styleUrls: ['./canales.component.css']
+  templateUrl: './canales.component.html'
 })
 export class CanalesComponent implements OnInit {
 

@@ -4,17 +4,17 @@ import { CanalService } from 'src/app/services/canal.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-ptomontt',
-  templateUrl: './ptomontt.component.html'
+  selector: 'app-santiago',
+  templateUrl: './santiago.component.html'
 })
-export class PtomonttComponent implements OnInit {
+export class SantiagoComponent implements OnInit {
 
   canales: Canal[] = [];
 
   constructor(public _channel: CanalService, private _router: ActivatedRoute) { }
 
   ngOnInit() {
-    this._channel.canalesbyZonal('PtoMontt').subscribe(
+    this._channel.canalesbyZonal('Santiago').subscribe(
       channel => {
         this.canales = channel;
         console.log(this.canales)

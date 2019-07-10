@@ -5,7 +5,9 @@
   <div class="col-md-6 text-right">
     <ul>
       <li *ngFor="let menu of sidebar.menu" style="text-decoration: none; display: inline-block; margin-top: 1em">
-        <a href="" class="btn btn-success"><i [class]="menu.icono"></i>{{menu.titulo}}</a></li>
+        <a [routerLink]="[menu.url]" class="btn btn-success" style="margin-right: 5px"><i [class]="menu.icono"></i>{{menu.titulo}}</a></li>
     </ul>
   </div>
 </div>
+<hr>
+

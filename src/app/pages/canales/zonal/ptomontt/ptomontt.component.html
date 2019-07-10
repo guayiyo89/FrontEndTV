@@ -1,3 +1,14 @@
-<p>
-  ptomontt works!
-</p>
+<table class="table">
+  <thead class="thead-dark" style="border-bottom: 3px rgb(18, 141, 18) solid">
+    <tr>
+      <th style="width: 50%">Canal</th>
+      <th>Ciudad</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="cursor: pointer" *ngFor="let canal of canales" [routerLink]="['/canales', canal._id]">
+      <td style="width: 50%">{{canal.nombre}}</td>
+      <td>{{canal.ciudad}}</td>
+    </tr>
+  </tbody>
+</table>

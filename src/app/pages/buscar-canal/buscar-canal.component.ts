@@ -6,8 +6,7 @@ import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-buscar-canal',
-  templateUrl: './buscar-canal.component.html',
-  styleUrls: ['./buscar-canal.component.css']
+  templateUrl: './buscar-canal.component.html'
 })
 export class BuscarCanalComponent implements OnInit {
 

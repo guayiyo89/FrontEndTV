@@ -54,9 +54,9 @@ export class UsuarioService {
   login( usuario: Usuario, recordar: boolean = false ) {
 
     if ( recordar ) {
-      localStorage.setItem('email', usuario.email);
+      localStorage.setItem('username', usuario.username);
     } else {
-      localStorage.removeItem('email');
+      localStorage.removeItem('username');
     }
 
     let url = this.URL_SERVICIOS + '/login';
@@ -66,5 +66,16 @@ export class UsuarioService {
         return true;
       })
     )
+  }
+
+  getUsers(){
+    let url = this.URL_SERVICIOS + '/usuarios';
+    url += '?token=' + this.token;
+    return this.http.get<Usuario[]>(url);
+  }
+
+  getUser(id:any){
+    let url = this.URL_SERVICIOS + '/usuarios/' + id;
+    return this.http.get<Usuario>(url);
   }
 }
