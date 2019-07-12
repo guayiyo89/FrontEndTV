@@ -5,6 +5,7 @@ import { CanalService } from 'src/app/services/canal.service';
 import { Canal } from 'src/app/interfaces/canal.model';
 import { map } from 'rxjs/operators';
 import Swal from 'sweetalert2';
+import { UploadImageService } from 'src/app/services/upload-image.service';
 
 @Component({
   selector: 'app-editcanal',
@@ -12,14 +13,17 @@ import Swal from 'sweetalert2';
 })
 export class EditcanalComponent implements OnInit {
 
-  constructor(private _fbuilder: FormBuilder, private router: Router, private _canalSvc: CanalService, private _route: ActivatedRoute) { }
+  constructor(private _fbuilder: FormBuilder, private router: Router, private _canalSvc: CanalService, private _route: ActivatedRoute, public _load: UploadImageService) { }
 
+  imagenSubir: File;
   canal: Canal;
   editForm: FormGroup;
   submitted = false;
+  idChannel: string;
 
   ngOnInit() {
     let canalId = localStorage.getItem("canalId");
+    this.idChannel = canalId;
     if(!canalId){
       alert("Algo va mal! :(");
       this.router.navigate(['/canales']);
@@ -64,6 +68,34 @@ export class EditcanalComponent implements OnInit {
       type: 'success',
       confirmButtonText: 'OK!',
     })
+  }
+
+  seleccionImg( archivo: File ) {
+    if (!archivo) {
+      return;
+    }
+
+    this.imagenSubir = archivo;
+  }
+
+  subirImg(){
+    this._load.uploadFile(this.imagenSubir,this.idChannel)
+      .then( resp => {
+        console.log(resp);
+        Swal.fire({
+          title: 'Archivo Subido!',
+          text: 'El archivo subió correctamente',
+          type: 'success'
+        })
+      })
+      .catch( resp => {
+        console.log('Error :(');
+        Swal.fire({
+          title: 'Fallo',
+          text: 'Algo ocurrió en el camino, que nos perdimos.',
+          type: 'error'
+        })
+      })
   }
 
 }

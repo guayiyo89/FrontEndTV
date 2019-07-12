@@ -1,55 +1,57 @@
-<div class="col-md-3">
-  <h2 class="text-center">Editar Canal</h2>
-  <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label>Nombre del Canal:</label>
-      <input type="text" formControlName="nombre" placeholder="Canal" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }">
-      <div *ngIf="submitted && f.nombre.errors">
-        <div *ngIf="f.nombre.errors.required">El nombre es obligatorio</div>
-      </div>
-    </div>
 
-    <div class="form-group">
-      <label>Ciudad:</label>
-      <input type="text" formControlName="ciudad" placeholder="Ciudad" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.ciudad.errors }">
-      <div *ngIf="submitted && f.ciudad.errors">
-        <div *ngIf="f.ciudad.errors.required">La ciudad es obligatoria</div>
-      </div>
+<div class="container-fluid">
+  <div class="row" style="margin: 0 auto">
+    <div class="col-md-4">
+      <h2 class="text-center">Editar Canal</h2>
+      <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label>Nombre del Canal:</label>
+          <input type="text" formControlName="nombre" placeholder="Canal" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }">
+          <div *ngIf="submitted && f.nombre.errors">
+            <div *ngIf="f.nombre.errors.required">El nombre es obligatorio</div>
+          </div>
+        </div>
+    
+        <div class="form-group">
+          <label>Ciudad:</label>
+          <input type="text" formControlName="ciudad" placeholder="Ciudad" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.ciudad.errors }">
+          <div *ngIf="submitted && f.ciudad.errors">
+            <div *ngIf="f.ciudad.errors.required">La ciudad es obligatoria</div>
+          </div>
+        </div>
+    
+        <div class="form-group">
+          <label>Zonal:</label>
+          <select formControlName="zonal" class="form-control" id="">
+            <option value="Concepcion">Concepción</option>
+            <option value="Temuco">Temuco</option>
+            <option value="Valdivia">Valdivia</option>
+            <option value="Osorno">Osorno</option>
+            <option value="PtoMontt">Puerto Montt</option>
+            <option value="Chiloe">Chiloé</option>
+            <option value="Coyhaique">Coyhaique</option>
+            <option value="Santiago">Santiago</option>
+          </select>
+          <div *ngIf="submitted && f.zonal.errors">
+            <div *ngIf="f.zonal.errors.required">Es necesario asignar una zonal</div>
+          </div>
+        </div>
+    
+        <div class="form-group">
+          <label>Url de Encoder:</label>
+          <input type="text" formControlName="urlEncoder" placeholder="Encoder" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.urlEncoder.errors }">
+        </div>
+    
+        <a [routerLink]="['/admin']" class="btn btn-success" style="margin-right: 5px">Volver</a>
+        <button type="submit"  class="btn btn-info">Guardar</button>
+      </form>
     </div>
-
-    <div class="form-group">
-      <label>Zonal:</label>
-      <select formControlName="zonal" class="form-control" id="">
-        <option value="Concepcion">Concepción</option>
-        <option value="Temuco">Temuco</option>
-        <option value="Valdivia">Valdivia</option>
-        <option value="Osorno">Osorno</option>
-        <option value="PtoMontt">Puerto Montt</option>
-        <option value="Chiloe">Chiloé</option>
-        <option value="Coyhaique">Coyhaique</option>
-        <option value="Santiago">Santiago</option>
-      </select>
-      <div *ngIf="submitted && f.zonal.errors">
-        <div *ngIf="f.zonal.errors.required">Es necesario asignar una zonal</div>
-      </div>
+    <div class="col-md 3">
+      <h2>Asignar Imagen</h2>
+      <input (change)="seleccionImg( $event.target.files[0] )" type="file" name="" id="">
+      <button (click)="subirImg()" [disabled]="!imagenSubir" type="button" class="btn btn-primary waves-effect waves-light m-r-10"> <i class="fa fa-save"></i> Subir Imagen</button>
+      <hr>
+      <h2>Subir Visio</h2>
     </div>
-
-    <div class="form-group">
-      <label>Url de Png del Esquema:</label>
-      <input type="text" formControlName="urlPng" placeholder="UrlPng" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.urlPng.errors }">
-    </div>
-
-    <div class="form-group">
-      <label>Url de Visio del Esquema:</label>
-      <input type="text" formControlName="urlVisio" placeholder="UrlVisio" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.urlVisio.errors }">
-    </div>
-
-    <div class="form-group">
-      <label>Url de Encoder:</label>
-      <input type="text" formControlName="urlEncoder" placeholder="Encoder" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.urlEncoder.errors }">
-    </div>
-
-    <a [routerLink]="['/admin']" class="btn btn-success">Volver</a>
-    <button type="submit"  class="btn btn-info">Guardar</button>
-  </form>
+  </div>
 </div>

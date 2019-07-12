@@ -35,22 +35,13 @@
     </div>
 
     <div class="form-group">
-      <label>Url de Png del Esquema:</label>
-      <input type="text" formControlName="urlPng" placeholder="UrlPng" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.urlPng.errors }">
-    </div>
-
-    <div class="form-group">
-      <label>Url de Visio del Esquema:</label>
-      <input type="text" formControlName="urlVisio" placeholder="UrlVisio" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.urlVisio.errors }">
-    </div>
-
-    <div class="form-group">
       <label>Url de Encoder:</label>
       <input type="text" formControlName="urlEncoder" placeholder="Encoder" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.urlEncoder.errors }">
     </div>
 
     <a [routerLink]="['/admin']" class="btn btn-success">Volver</a>
     <button type="submit" class="btn btn-info">Guardar</button>
+    <p>*Los links para la imagen y el visio se asignan al momento de editar Canal.</p>
 
   </form>
 </div>

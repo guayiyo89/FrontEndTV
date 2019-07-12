@@ -16,20 +16,6 @@ export class ImagesComponent implements OnInit {
   ngOnInit() {
   }
 
-  fileChange(element) {
-    this.uploadFile = element.target.files[0];
-  }
 
-  upload() {
-    let formData = new FormData();
-    for (var i = 0; i < this.uploadFile.length; i++){
-      formData.append("uploads[]", this.uploadFile[i], this.uploadFile[i].name);
-    }
-    this.uploading.postFileImagen(formData).subscribe(
-      res => {
-        console.log('La respuesta es...', res)
-      }
-    )
-  }
 
 }

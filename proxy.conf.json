@@ -1,0 +1,7 @@
+{
+    "/upload/*": {
+        "target": "http://localhost:3000/upload/canales",
+        "secure": false,
+        "changeOrigin": true
+    }
+}
