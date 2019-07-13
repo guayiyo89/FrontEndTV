@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.usuario = this.user.usuario;
+    console.log("USER:::", this.usuario);
   }
 
   logout(){

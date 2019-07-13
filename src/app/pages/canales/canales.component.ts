@@ -17,7 +17,6 @@ export class CanalesComponent implements OnInit {
     this._channel.getCanales().subscribe(
       channels => {
         this.canalList = channels;
-        console.log(this.canalList);
       }
     )
   }
