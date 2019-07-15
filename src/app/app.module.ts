@@ -37,6 +37,11 @@ import { UsersComponent } from './pages/users/users.component';
 import { ImagesComponent } from './pages/images/images.component';
 import { AdminGuardGuard } from './services/admin-guard.guard';
 import { UploadImageService } from './services/upload-image.service';
+import { ArchivosComponent } from './pages/archivos/archivos.component';
+
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {FileUploadModule} from 'primeng/fileupload';
+import { ImagenPipe } from './pipes/imagen.pipe';
 
 @NgModule({
   declarations: [
@@ -60,7 +65,9 @@ import { UploadImageService } from './services/upload-image.service';
     ConcepcionComponent,
     FooterComponent,
     UsersComponent,
-    ImagesComponent
+    ImagesComponent,
+    ArchivosComponent,
+    ImagenPipe,
   ],
   imports: [
     BrowserModule,
@@ -70,6 +77,8 @@ import { UploadImageService } from './services/upload-image.service';
     FormsModule,
     ReactiveFormsModule,
     SweetAlert2Module.forRoot(),
+    NgbModule,
+    FileUploadModule,
     PAGES_ROUTES
   ],
   providers: [CanalService, UsuarioService, SidebarService, LoginGuardGuard, AdminGuardGuard, UploadImageService],

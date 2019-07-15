@@ -17,21 +17,25 @@ export class AddcanalComponent implements OnInit {
   addForm: FormGroup;
   submitted = false;
 
+  
+
   ngOnInit() {
+
     this.addForm = this._fbuilder.group({
       nombre: ['', Validators.required],
       ciudad: ['', Validators.required],
       zonal: ['', Validators.required],
-      urlPng: '',
-      urlVisio: '',
+      archivos: [],
       urlEncoder: ''
     })
   }
 
   onSubmit(){
     this.submitted = true;
+    
 
     if(this.addForm.valid){
+      this.addForm.value.archivos = [];
       this._canalSvc.addCanal(this.addForm.value).subscribe(
         data =>{
           console.log(data);

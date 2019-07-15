@@ -78,4 +78,8 @@ export class UsuarioService {
     let url = this.URL_SERVICIOS + '/usuarios/' + id;
     return this.http.get<Usuario>(url);
   }
+
+  getToken(){
+    return '?token=' + this.token;
+  }
 }

@@ -13,7 +13,9 @@
         <button class="btn btn-success"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Encoder</button>
       </div>
       <div class="col-md-9">
-          <img [src]="canal.urlPng" style="width: 90%">
+        <div *ngFor="let imagen of canal.archivos">
+          <img *ngIf="imagen.tipo=='imagen'" [src]=" 'imagenes/'+imagen.url | imagen" style="width: 90%">
+        </div>
       </div>
     </div>
   </div>
