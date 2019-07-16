@@ -31,13 +31,19 @@ export class EditcanalComponent implements OnInit {
 
   uploadedFiles: any[] = [];
 
-  archivos = [];
-  imagen: any;
+  imagenes = [];    // todos los archivos
+  archivos = [];    // todas las imagenes
+
+  imagen: any;    //imagen seleccionado en el combo 
+  archivo: any;   //archivo seleccionado en el combo 
 
   ngOnInit() {
     this._archivoService.getArchivos().subscribe(ars=>{
       this.archivos = ars;
-      this.imagen = this.archivos[0];
+      this.imagenes = ars.filter(a=> a.tipo=='imagen' );             
+      this.archivos = ars.filter(a=> a.tipo=='archivo' ); 
+      this.imagen = this.imagenes[0];            
+      this.archivo = this.archivos[0];            
     });
 
     let canalId = localStorage.getItem("canalId");
@@ -99,25 +105,6 @@ export class EditcanalComponent implements OnInit {
     this.imagenSubir = archivo;
   }
 
-  subirImg(){
-    this._load.uploadFile(this.imagenSubir,this.idChannel)
-      .then( resp => {
-        console.log(resp);
-        Swal.fire({
-          title: 'Archivo Subido!',
-          text: 'El archivo subió correctamente',
-          type: 'success'
-        })
-      })
-      .catch( resp => {
-        console.log('Error :(');
-        Swal.fire({
-          title: 'Fallo',
-          text: 'Algo ocurrió en el camino, que nos perdimos.',
-          type: 'error'
-        })
-      })
-  }
   closeResult: string;
   open(content) {
     this.modalService.open(content, {size: 'lg'}).result.then((result) => {
@@ -137,32 +124,34 @@ export class EditcanalComponent implements OnInit {
   }
   nombre_imagen = "";
  
-  subir(modal, uploader){
-
+  subir(modal, uploader, tipo){
     console.log("UPL:::", uploader)
-    this._uploadService.subirVariosArchivos(uploader.files).subscribe(res=>{
+    this._uploadService.subirVariosArchivos(uploader.files, tipo).subscribe(res=>{
+    
       let respuesta = <any>{};
       respuesta = res;
-      let newArchivo = {nombre: this.nombre_imagen, tipo: 'imagen', url: respuesta.archivos[0]}
+      let newArchivo = {nombre: this.nombre_imagen, tipo: tipo, url: respuesta.archivos[0]}
       this._archivoService.addArchivo(newArchivo).subscribe(ar =>{
         console.log(ar);
-        this.archivos.push(ar);
+        if(tipo=='imagen') this.imagenes.push(ar);
+        if(tipo=='archivo') this.archivos.push(ar);
         Swal.fire({
           title: 'Listo!',
-          text: 'Imagen Subida',
+          text: 'Archivo subido !!',
           type: 'success',
           confirmButtonText: 'OK!',
         })
       });
+      this.nombre_imagen = '';
       modal.close();
     });
   }
 
-  asignar(){
-    this.canal.archivos.push(this.imagen);
-
+  asignar(tipo){
+    if(tipo=='imagen') this.canal.archivos.push(this.imagen);
+    if(tipo=='archivo') this.canal.archivos.push(this.archivo);
+    
     this._canalSvc.editCanal(this.canal).subscribe(res=>{
-      console.log(res);
       Swal.fire({
         title: 'Listo!',
         text: 'Imagen Agregada al Canal',
@@ -171,9 +160,9 @@ export class EditcanalComponent implements OnInit {
       })
     });
   }
-  seleccionaImagen(even: any){
-    this.imagen = even;
-    console.log(this.imagen);
+  selecciona(even: any, tipo){
+    if(tipo=='image') this.imagen = even;
+    if(tipo=='archivo') this.archivo = even;
   }
 
   deleteFoto(foto){
@@ -182,7 +171,7 @@ export class EditcanalComponent implements OnInit {
       
       Swal.fire({
         title: 'Listo!',
-        text: 'Imagen Eliminada del Canal',
+        text: 'Archivo Eliminado del Canal',
         type: 'success',
         confirmButtonText: 'OK!',
       })

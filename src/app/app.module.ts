@@ -42,7 +42,7 @@ import { ArchivosComponent } from './pages/archivos/archivos.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FileUploadModule} from 'primeng/fileupload';
 import { ImagenPipe } from './pipes/imagen.pipe';
-
+import {GalleriaModule} from 'primeng/galleria';
 @NgModule({
   declarations: [
     AppComponent,
@@ -79,6 +79,7 @@ import { ImagenPipe } from './pipes/imagen.pipe';
     SweetAlert2Module.forRoot(),
     NgbModule,
     FileUploadModule,
+    GalleriaModule,
     PAGES_ROUTES
   ],
   providers: [CanalService, UsuarioService, SidebarService, LoginGuardGuard, AdminGuardGuard, UploadImageService],

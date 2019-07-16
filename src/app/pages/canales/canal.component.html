@@ -6,16 +6,44 @@
   </div>
   <div class="col-md-12">
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-4">
         Ciudad <br>
         {{canal.ciudad}} <br>
-        <button class="btn btn-info">Descargar Visio</button><br>
-        <button class="btn btn-success"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Encoder</button>
-      </div>
-      <div class="col-md-9">
-        <div *ngFor="let imagen of canal.archivos">
-          <img *ngIf="imagen.tipo=='imagen'" [src]=" 'imagenes/'+imagen.url | imagen" style="width: 90%">
+      <!-- 
+        <button class="btn btn-success"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Encoder</button> -->
+        <a class="btn btn-success" [title]="hola" [href]="canal.Encoder" role="button">Encoder</a>
+        <div class="row">
+          <div class="col-12">
+              <table class="table" *ngIf="canal">
+                <thead class="thead-dark" style="border-bottom: 3px rgb(18, 141, 18) solid">
+                  <tr>
+                    <th style="width: 50%">Nombre</th>
+                    <th>URL</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let a of canal.archivos" >                
+                    <tr *ngIf="a.tipo=='archivo'" >
+                      <td style="width: 50%">{{a.nombre}}</td>
+                      <td> <a class="btn btn-primary" [title]="hola" [href]="'archivo/'+ a.url |imagen" role="button">Descargar</a></td>
+                    </tr>
+                </tbody>
+              </table>
+          </div>
         </div>
+      </div>
+
+
+      <div class="col-md-8">
+        <ngb-carousel *ngIf="imagenes">
+          <ng-template ngbSlide *ngFor="let a of imagenes" >
+            <img width="80%" [src]="'imagenes/'+a.url | imagen" alt="{{a.nombre}}">
+            <div class="carousel-caption">
+              <h3 style="color: black">{{a.nombre}} </h3>
+              <p style="color: black"> {{a.url}} </p>
+            </div>
+          </ng-template>          
+        </ngb-carousel>
       </div>
     </div>
   </div>

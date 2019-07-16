@@ -54,18 +54,18 @@
           <button (click)="open(content)" type="button" class="btn btn-primary waves-effect waves-light m-r-10"> <i class="fa fa-save"></i> Subir Imagen</button>
         </div>
         <div class="col-5">
-          <select (ngModelChange)="seleccionaImagen($event)" [(ngModel)]="imagen" name="imagen" class="form-control" id="">
-            <option *ngFor="let a of archivos" [ngValue]="a">{{a.nombre}} </option>
+          <select (ngModelChange)="selecciona($event, 'imagen')" [(ngModel)]="imagen" name="imagen" class="form-control" id="">
+            <option *ngFor="let a of imagenes" [ngValue]="a">{{a.nombre}} </option>
           </select>
         </div>
         <div class="col-4">
-            <button (click)="asignar()" type="button" class="btn btn-secondary waves-effect waves-light m-r-10"> <i class="fa fa-save"></i> Asignar Imagen</button>
+            <button [disabled]="!imagen" (click)="asignar('imagen')" type="button" class="btn btn-secondary waves-effect waves-light m-r-10"> <i class="fa fa-save"></i> Asignar Imagen</button>
         </div>
       </div>
       
       <ng-template #content let-modal>
           <div class="modal-header">
-            <h4 class="modal-title" id="modal-basic-title">Subir Archivo</h4>
+            <h4 class="modal-title" id="modal-basic-title">Subir Imagen</h4>
             <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -73,7 +73,7 @@
           <div class="modal-body">
             <label>Nombre:</label>
             <input type="text" [(ngModel)]="nombre_imagen" name="nombre_imagen" placeholder="" class="form-control" >
-              <p-fileUpload #uploader name="archivos[]"  accept="image/*" maxFileSize="1000000" chooseLabel="Seleccionar archivo..." 
+              <p-fileUpload #uploader  accept="image/*" maxFileSize="1000000" chooseLabel="Seleccionar archivo..." 
                [showUploadButton]="false" [showCancelButton]="false" [previewWidth]="300">
                 <ng-template pTemplate="content">
                     <ul *ngIf="uploadedFiles.length">
@@ -83,7 +83,7 @@
       </p-fileUpload>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-outline-dark" (click)="subir(modal, uploader)">Subir</button>
+            <button type="button" class="btn btn-outline-dark" (click)="subir(modal, uploader, 'imagen')">Subir</button>
           </div>
         </ng-template>
         
@@ -98,14 +98,12 @@
                   <th></th>
                 </tr>
               </thead>
-              <tbody>
-                <div *ngFor="let foto of canal.archivos">
+              <tbody *ngFor="let foto of canal.archivos" >                
                   <tr *ngIf="foto.tipo=='imagen'" >
                     <td style="width: 50%">{{foto.nombre}}</td>
                     <td>imagenes/{{foto.url}}</td>
                     <td> <button class="btn btn-danger" (click)="deleteFoto(foto)" type="button"> Eliminar</button></td>
                   </tr>
-                </div>
               </tbody>
             </table>
         </div>
@@ -113,6 +111,66 @@
       <!-- <input (change)="seleccionImg( $event.target.files[0] )" type="file" name="" id=""> -->
       <hr>
       <h2>Subir Visio</h2>
+      <div class="row">
+        <div class="col-3">
+          <button (click)="open(contentArchivo)" type="button" class="btn btn-primary waves-effect waves-light m-r-10"> <i class="fa fa-save"></i> Subir Archivo</button>
+        </div>
+        <div class="col-5">
+          <select (ngModelChange)="selecciona($event, 'archivo')" [(ngModel)]="archivo" name="imagen" class="form-control" id="">
+            <option *ngFor="let a of archivos" [ngValue]="a">{{a.nombre}} </option>
+          </select>
+        </div>
+        <div class="col-4">
+            <button [disabled]="!archivo" (click)="asignar('archivo')" type="button" class="btn btn-secondary waves-effect waves-light m-r-10"> <i class="fa fa-save"></i> Asignar Archivo</button>
+        </div>
+      </div>
+      
+      <ng-template #contentArchivo let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Subir Archivo</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <label>Nombre:</label>
+            <input type="text" [(ngModel)]="nombre_imagen" name="nombre_imagen" placeholder="" class="form-control" >
+              <p-fileUpload #uploaderArchivo accept=".vsd, .vsdx"  chooseLabel="Seleccionar archivo..." 
+               [showUploadButton]="false" [showCancelButton]="false" [previewWidth]="300">
+                <ng-template pTemplate="content">
+                    <ul *ngIf="uploadedFiles.length">
+                        <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                    </ul>
+                </ng-template>
+      </p-fileUpload>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="subir(modal, uploaderArchivo, 'archivo')">Subir</button>
+          </div>
+        </ng-template>
+        
+      <br>
+      <div class="row">
+        <div class="col-12">
+            <table class="table" *ngIf="canal">
+              <thead class="thead-dark" style="border-bottom: 3px rgb(18, 141, 18) solid">
+                <tr>
+                  <th style="width: 50%">Nombre</th>
+                  <th>URL</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let a of canal.archivos" >                
+                  <tr *ngIf="a.tipo=='archivo'" >
+                    <td style="width: 50%">{{a.nombre}}</td>
+                    <td>archivos/{{a.url}}</td>
+                    <td> <button class="btn btn-danger" (click)="deleteFoto(a)" type="button"> Eliminar</button></td>
+                  </tr>
+              </tbody>
+            </table>
+        </div>
+      </div>
+      
     </div>
   </div>
 </div>
