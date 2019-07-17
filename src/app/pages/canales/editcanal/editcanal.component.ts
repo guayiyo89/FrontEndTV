@@ -68,9 +68,13 @@ export class EditcanalComponent implements OnInit {
     
     this._canalSvc.getCanal(canalId).subscribe(
       data => {
-        console.log(data);
         this.editForm.patchValue(data); // Reescribimos?
         this.canal = data;
+        if(!this.canal.archivos){
+          this.canal.archivos = [];
+        }
+
+        console.log(this.canal);
       }
     );
   }
