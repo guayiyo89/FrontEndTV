@@ -37,7 +37,7 @@
       <div class="col-md-8">
         <ngb-carousel *ngIf="imagenes">
           <ng-template ngbSlide *ngFor="let a of imagenes" >
-            <img width="80%" [src]="'imagenes/'+a.url | imagen" alt="{{a.nombre}}">
+            <img width="80%" [src]="'imagen/'+a.url | imagen" alt="{{a.nombre}}">
             <div class="carousel-caption">
               <h3 style="color: black">{{a.nombre}} </h3>
               <p style="color: black"> {{a.url}} </p>
