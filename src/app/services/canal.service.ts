@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Canal } from '../interfaces/canal.model';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
 import { UsuarioService } from './usuario.service';
+import { URL_SERVICIOS } from '../config/config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CanalService {
 
-  baseUrl = 'http://localhost:3000/canales';
+  baseUrl = URL_SERVICIOS + '/canales';
   constructor(public http: HttpClient, public _user: UsuarioService) { }
 
   getCanales(){
@@ -40,6 +40,12 @@ export class CanalService {
 
   editCanal(canal: Canal){
     let url = `${this.baseUrl}/${canal._id}`;
+    url += '?token=' + this._user.token;
+    return this.http.put(url, canal);
+  }
+
+  editImg(canal: Canal){
+    let url = `${this.baseUrl}/img/${canal._id}`;
     url += '?token=' + this._user.token;
     return this.http.put(url, canal);
   }
