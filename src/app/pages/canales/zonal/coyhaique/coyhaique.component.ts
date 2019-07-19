@@ -17,7 +17,6 @@ export class CoyhaiqueComponent implements OnInit {
     this._channel.canalesbyZonal('Coyhaique').subscribe(
       channel => {
         this.canales = channel;
-        console.log(this.canales)
       }
     )
   }
