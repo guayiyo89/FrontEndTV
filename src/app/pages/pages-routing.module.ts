@@ -11,6 +11,7 @@ import { LoginGuardGuard } from '../services/login-guard.guard';
 import { UsersComponent } from './users/users.component';
 import { ImagesComponent } from './images/images.component';
 import { AdminGuardGuard } from '../services/admin-guard.guard';
+import { NoPageFoundComponent } from './no-page-found/no-page-found.component';
 
 const pagesRoutes: Routes = [
     {
@@ -26,7 +27,8 @@ const pagesRoutes: Routes = [
             {path: 'admin', component: AdminComponent, canActivate: [AdminGuardGuard]},
             {path: 'usuarios', component: UsersComponent, canActivate: [AdminGuardGuard]},
             {path: 'images', component: ImagesComponent, canActivate: [AdminGuardGuard]},
-            {path: '', redirectTo: 'canales', pathMatch: 'full'}
+            {path: '', redirectTo: 'canales', pathMatch: 'full'},
+            {path: '**', component: NoPageFoundComponent}
         ]
     }
 ]
