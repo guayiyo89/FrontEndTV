@@ -17,7 +17,6 @@ export class PtomonttComponent implements OnInit {
     this._channel.canalesbyZonal('PtoMontt').subscribe(
       channel => {
         this.canales = channel;
-        console.log(this.canales)
       }
     )
   }
