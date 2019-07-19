@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CanalService } from 'src/app/services/canal.service';
 import { Canal } from 'src/app/interfaces/canal.model';
 import { ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-buscar-canal',
@@ -12,6 +11,7 @@ export class BuscarCanalComponent implements OnInit {
 
   canalList: Canal[] = [];
   public palabra: string = '';
+  allCanal: Canal[];
 
   constructor(public _channel: CanalService, private _route: ActivatedRoute) { }
 
@@ -30,7 +30,17 @@ export class BuscarCanalComponent implements OnInit {
 
   }
 
+  listarChannel(){
+    this._channel.getCanales().subscribe(
+      channels => {
+        this.allCanal = channels;
+      }
+    )
+  }
+
   ngOnInit(){
     console.log('Yeah!');
+    this.listarChannel();
   }
 }
+
