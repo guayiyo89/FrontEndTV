@@ -17,7 +17,6 @@ export class OsornoComponent implements OnInit {
     this._channel.canalesbyZonal('Osorno').subscribe(
       channel => {
         this.canales = channel;
-        console.log(this.canales)
       }
     )
   }
