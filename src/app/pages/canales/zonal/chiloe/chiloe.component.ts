@@ -17,7 +17,6 @@ export class ChiloeComponent implements OnInit {
     this._channel.canalesbyZonal('Chiloe').subscribe(
       channel => {
         this.canales = channel;
-        console.log(this.canales)
       }
     )
   }
