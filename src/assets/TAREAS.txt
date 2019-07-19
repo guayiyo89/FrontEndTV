@@ -1,0 +1,8 @@
+Revisar server de alojamiento (MV)
+Dadada11?
+
+
+Conseguir PC - Internet
+
+Instalar Apache
+Configurar Node y MongoDB
