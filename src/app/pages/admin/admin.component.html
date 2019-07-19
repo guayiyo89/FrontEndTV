@@ -9,8 +9,35 @@
   </div>
 
   <div class="col-md-12" *ngIf="palabra.length < 1">
-      <h1 style="color: rgb(173, 173, 173)">Buscar Canales Regionales</h1><hr>
-			<p>Por favor escriba un termino para iniciar la busqueda.</p>
+      <table class="table">
+          <thead class="thead-dark green-br">
+            <tr>
+              <th style="width: 50%">Canal</th>
+              <th>Ciudad</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="cursor: pointer" *ngFor="let canal of allCanal">
+              <td>{{canal.nombre}}</td>
+              <td>{{canal.ciudad}}</td>
+              <td class="text-right">
+                <button (click)="updateCanal(canal)" style="margin-left: 20px;" class="btn btn-success"> Editar</button>
+                <button [swal]="deleteSwal" style="margin-left: 20px;" class="btn btn-danger"> Eliminar</button> 
+                <!-- <button (click)="deleteCanal(canal)" style="margin-left: 20px;" class="btn btn-danger"> Eliminar</button> -->
+              </td>
+              <swal
+                #deleteSwal
+                title="Eliminar {{ canal.nombre }}?"
+                text="Está seguro?"
+                type="question"
+                [showCancelButton]="true"
+                [focusCancel]="true"
+                (confirm)="deleteCanal(canal)">
+              </swal>
+            </tr>
+          </tbody>
+        </table>
   </div>
 
   <div class="col-md-12" *ngIf="palabra.length > 0">
