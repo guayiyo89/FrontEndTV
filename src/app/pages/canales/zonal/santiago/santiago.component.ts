@@ -17,7 +17,6 @@ export class SantiagoComponent implements OnInit {
     this._channel.canalesbyZonal('Santiago').subscribe(
       channel => {
         this.canales = channel;
-        console.log(this.canales)
       }
     )
   }
