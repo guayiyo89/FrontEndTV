@@ -14,6 +14,9 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router, public _user: UsuarioService) { }
 
+  username;
+  password;
+
   ngOnInit() {
   }
 
@@ -37,5 +40,7 @@ export class LoginComponent implements OnInit {
       });
 
   }
+
+}
 
 }
