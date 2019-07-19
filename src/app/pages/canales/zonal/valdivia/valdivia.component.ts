@@ -17,7 +17,6 @@ export class ValdiviaComponent implements OnInit {
     this._channel.canalesbyZonal('Valdivia').subscribe(
       channel => {
         this.canales = channel;
-        console.log(this.canales)
       }
     )
   }
