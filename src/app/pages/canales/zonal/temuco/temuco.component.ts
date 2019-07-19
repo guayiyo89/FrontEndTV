@@ -17,7 +17,6 @@ export class TemucoComponent implements OnInit {
     this._channel.canalesbyZonal('Temuco').subscribe(
       channel => {
         this.canales = channel;
-        console.log(this.canales)
       }
     )
   }
