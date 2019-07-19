@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Usuario } from '../interfaces/usuario.model';
 import { map } from 'rxjs/operators';
+import { URL_SERVICIOS } from '../config/config';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,6 @@ export class UsuarioService {
 
   usuario: Usuario;
   token: string;
-  URL_SERVICIOS = 'http://localhost:3000';
 
   constructor(public http: HttpClient, public router: Router) {
     this.loadStorage();
@@ -59,7 +59,7 @@ export class UsuarioService {
       localStorage.removeItem('username');
     }
 
-    let url = this.URL_SERVICIOS + '/login';
+    let url = URL_SERVICIOS + '/login';
     return this.http.post( url, usuario ).pipe(
       map((resp:any) => {
         this.guardadoLs(resp.id, resp.token, resp.usuario);
@@ -69,13 +69,13 @@ export class UsuarioService {
   }
 
   getUsers(){
-    let url = this.URL_SERVICIOS + '/usuarios';
+    let url = URL_SERVICIOS + '/usuarios';
     url += '?token=' + this.token;
     return this.http.get<Usuario[]>(url);
   }
 
   getUser(id:any){
-    let url = this.URL_SERVICIOS + '/usuarios/' + id;
+    let url = URL_SERVICIOS + '/usuarios/' + id;
     return this.http.get<Usuario>(url);
   }
 
