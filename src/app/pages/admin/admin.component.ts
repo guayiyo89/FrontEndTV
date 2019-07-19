@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AdminComponent implements OnInit {
 
+  allCanal: Canal[];
   canalList: Canal[] = [];
   public palabra: string = '';
 
@@ -24,13 +25,21 @@ export class AdminComponent implements OnInit {
     this._channel.buscarCanal(this.palabra).subscribe(
       channels => {
         this.canalList = channels;
-        console.log(this.canalList);
       }
     );
 
   }
 
+  listarCanal(){
+    this._channel.getCanales().subscribe(
+      channels => {
+        this.allCanal = channels
+      }
+    )
+  }
+
   ngOnInit() {
+    this.listarCanal();
   }
 
   updateCanal(canal: Canal){
@@ -44,6 +53,7 @@ export class AdminComponent implements OnInit {
       data => {
         console.log(data);
         this.palabra = '';
+        this.listarCanal();
       });
   }
 
