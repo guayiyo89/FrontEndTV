@@ -17,7 +17,6 @@ export class ConcepcionComponent implements OnInit {
     this._channel.canalesbyZonal('Concepcion').subscribe(
       channel => {
         this.canales = channel;
-        console.log(this.canales)
       }
     )
   }
