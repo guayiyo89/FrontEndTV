@@ -43,6 +43,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FileUploadModule} from 'primeng/fileupload';
 import { ImagenPipe } from './pipes/imagen.pipe';
 import {GalleriaModule} from 'primeng/galleria';
+import { NoPageFoundComponent } from './pages/no-page-found/no-page-found.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,6 +69,7 @@ import {GalleriaModule} from 'primeng/galleria';
     ImagesComponent,
     ArchivosComponent,
     ImagenPipe,
+    NoPageFoundComponent,
   ],
   imports: [
     BrowserModule,
