@@ -7,11 +7,14 @@
   <div class="col-md-12">
     <div class="row">
       <div class="col-md-4">
-        Ciudad <br>
-        {{canal.ciudad}} <br>
+        <h5 style="font-weight: bolder; color: rgb(40, 141, 40); text-transform: uppercase">Ciudad</h5>
+        <h6>{{canal.ciudad}}</h6>
+        <h5 style="font-weight: bolder; color: rgb(40, 141, 40); text-transform: uppercase">Zonal</h5>
+        <h6>{{canal.zonal}}</h6>
       <!-- 
         <button class="btn btn-success"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Encoder</button> -->
-        <a class="btn btn-success" [title]="hola" [href]="canal.Encoder" role="button">Encoder</a>
+        
+        <h5 style="font-weight: bolder; color: rgb(40, 141, 40); text-transform: uppercase">Visio</h5>
         <div class="row">
           <div class="col-12">
               <table class="table" *ngIf="canal">
@@ -29,6 +32,7 @@
                     </tr>
                 </tbody>
               </table>
+              <a class="btn btn-success" [title]="hola" [href]="canal.Encoder" role="button">Encoder</a>
           </div>
         </div>
       </div>
@@ -37,11 +41,7 @@
       <div class="col-md-8">
         <ngb-carousel *ngIf="imagenes">
           <ng-template ngbSlide *ngFor="let a of imagenes" >
-            <img width="80%" [src]="'imagen/'+a.url | imagen" alt="{{a.nombre}}">
-            <div class="carousel-caption">
-              <h3 style="color: black">{{a.nombre}} </h3>
-              <p style="color: black"> {{a.url}} </p>
-            </div>
+            <img width="100%" [src]="'imagen/'+a.url | imagen" alt="{{a.nombre}}">
           </ng-template>          
         </ngb-carousel>
       </div>
